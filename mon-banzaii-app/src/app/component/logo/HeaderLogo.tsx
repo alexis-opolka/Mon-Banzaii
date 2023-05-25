@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ReactElement } from 'react';
 
-export function headerLogo(): ReactElement {
+export function HeaderLogo(): ReactElement {
   return (
     <a
      className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
