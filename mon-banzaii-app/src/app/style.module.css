@@ -1,0 +1,30 @@
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20%;
+  }
+
+.button:hover {
+    background-color: #3e8e41;
+  }
+
+.title {
+    font-size: 800%;
+    text-align: center;
+    font-family: khiara ;
+  }
+
+
+/* import font */
+
+@font-face {
+  font-family: "khiara";
+  src: url("../fonts/khiara_script/©_2020_NUGS_Project_Khiara_Script.ttf") format("truetype");
+  font-style: normal;
+}
