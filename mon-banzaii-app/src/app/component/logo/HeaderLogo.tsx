@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import { ReactElement } from 'react';
 
 export function HeaderLogo(): ReactElement {
@@ -13,9 +14,8 @@ export function HeaderLogo(): ReactElement {
       <Image
         src="/logo.png"
         alt="Banzaii project logo"
-        className="dark:invert"
-        width={100}
-        height={24}
+        width={135.72}
+        height={135.2}
         priority
       />
     </a>
