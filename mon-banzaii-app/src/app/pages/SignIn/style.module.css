@@ -1,0 +1,54 @@
+.connection {
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    padding: 20px;    
+    font-size: 200%;
+    border-radius: 50px;
+    display: block;
+}
+
+.UserName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+
+.Password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+
+}
+
+.add_info_to_signin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.SignIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: rgb(240, 240, 240);
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 50px;
+
+}
+
+.SignIn:hover {
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+}
+
+
+.form{ 
+    height: max-content;
+}
