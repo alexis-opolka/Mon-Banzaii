@@ -10,3 +10,5 @@ module.exports = {
       ignoreBuildErrors: true,
     },
   };
+
+module.exports = nextConfig
