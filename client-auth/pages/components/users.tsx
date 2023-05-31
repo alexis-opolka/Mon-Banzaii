@@ -27,7 +27,13 @@ function AddEdit(props) {
       .concat(user ? null : Yup.string().required('Password is required'))
       .min(6, 'Password must be at least 6 characters')
   });
-  const formOptions = { resolver: yupResolver(validationSchema) };
+  const oneResolver = yupResolver(validationSchema);
+  console.log("Resolver:", oneResolver);
+
+  const formOptions = {
+    resolver: oneResolver,
+    defaultValues: null,
+  };
 
   // set default form values if in edit mode
   if (user) {

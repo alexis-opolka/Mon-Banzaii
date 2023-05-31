@@ -24,6 +24,7 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.3.3",
     "next": "^13.4.4",
+    "prop-types": "^15.8.1",
     "react-hook-form": "^7.44.2",
     "rxjs": "^7.8.1",
     "sequelize": "^6.31.1",

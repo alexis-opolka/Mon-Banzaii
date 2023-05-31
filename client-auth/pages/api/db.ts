@@ -1,6 +1,6 @@
 import getConfig from "next/config";
 import mysql from "mysql2/promise";
-import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize, DataTypes, CreationOptional, InferAttributes, InferCreationAttributes } from "sequelize";
 
 // Functions
 async function initialize() {
@@ -12,16 +12,48 @@ async function initialize() {
   // from scratch
   const { host, port, database, user, password } = serverRuntimeConfig.env;
   const connection = await mysql.createConnection({host, port, user, password});
-  await createDatabaseFromScratch();
+  await createDatabaseFromScratch(connection, database);
 
   // Now that we are sure to have a functional DB,
   // we open a new connection
-  const sequelize = new Sequelize(database, user, password, {dialect: "mysql"});
+  const sequelize: Sequelize = new Sequelize(database, user, password, {dialect: "mysql"});
 
   // Now that we have established a connection
   // let's init those models and add them to the exported
   // DB Object
-  db.User = userModel(sequelize);
+  // db.User = userModel(sequelize);
+  db.User = sequelize.define("User", {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    hash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['hash'],
+      }
+    },
+    scopes: {
+      withHash: {
+        attributes: {
+          exclude: []
+        },
+      }
+    }
+  })
+  console.log("db.User:", db.User);
 
   // We need to synchronize the models with the database
   await sequelize.sync({
@@ -33,16 +65,25 @@ async function initialize() {
   db.initialized = true;
 }
 
-function userModel(sequelize) {
+function userModel(sequelize: Sequelize) {
   // This function creates the DB model for the User objects
   const attributes = {
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    hash: {},
-    firstName: {},
-    lastName: {}
+    hash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   };
 
   const options = {
@@ -57,9 +98,11 @@ function userModel(sequelize) {
       }
     }
   };
+
+  return sequelize.define('User', attributes, {options})
 }
 
-async function createDatabaseFromScratch() {
+async function createDatabaseFromScratch(connection, database) {
   // this function is required to create the Database from
   // scratch if the DB is missing.
   // It should handle the reading of the configuration file
@@ -67,7 +110,9 @@ async function createDatabaseFromScratch() {
   // to the engine in order to set up correctly the DB
   // and its tables.
   //
-  // TODO: createDatabseFromScratch function
+  // TODO: createDatabaseFromScratch function
+
+  await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\``)
 }
 
 // Variables declaration
@@ -75,5 +120,6 @@ const { serverRuntimeConfig } = getConfig();
 
 export const db = {
   initialized: false,
-  initialize
-}
+  initialize,
+  User: null?undefined:null,
+};

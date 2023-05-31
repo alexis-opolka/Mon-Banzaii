@@ -4,8 +4,7 @@ import { Spinner } from "../components";
 import { Layout } from "../components/users";
 import { userService } from "pages/services";
 
-export default Index;
-
+// Functions
 function Index() {
   const [users, setUsers] = useState(null);
 
@@ -28,6 +27,7 @@ function Index() {
 
   return (
     <Layout>
+      {console.log("USERS:", users)}
       <h1>Users</h1>
       <Link href="/users/add" className="btn btn-sm btn-success mb-2">Add User</Link>
       <table className="table table-striped">
@@ -75,3 +75,6 @@ function Index() {
     </Layout>
   );
 }
+
+// Variables declaration
+export default Index;

@@ -1,28 +1,37 @@
 // The import area
-
 import { BehaviorSubject } from "rxjs";
 import getConfig from "next/config";
 import Router from "next/router";
 import { fetchWrapper } from "../../helpers";
 import { alertService } from "./alert.service";
+import { useState, useEffect } from "react";
 
 // The function definition area
 async function login(username: String, password: String) {
   const user = await fetchWrapper.post(`${baseURL}/authenticate`, {username, password});
 
-  // publish user to subscribers and store in local storage to stay logged in between page refreshes
+  // publish user to subscribers
   userSubject.next(user);
+  // store in local storage to stay logged in between page refreshes
   localStorage.setItem('user', JSON.stringify(user));
+  // Set the internal variable of logout to false
+  // In any case, if we're logged in, we can't be logged out
+  // at the same time
+  userHasBeenLoggedOut = false;
 }
 
 async function logout(){
   // Let's clear our previous notifications
   alertService.clear();
 
-  // remove user from local storage, publish null to user subscribers and redirect to login page
+  // remove user from local storage,
   localStorage.removeItem('user');
+  // publish null to user subscribers,
   userSubject.next(null);
-  Router.push('/account/login');
+  // inform internally that the user has been logged out
+  userHasBeenLoggedOut = true;
+  // and redirect to root page
+  Router.push('/');
 }
 
 async function register(user: String){
@@ -64,15 +73,30 @@ async function _delete(id) {
   }
 }
 
+// Functions used to verify file-scope variables
+// called internal variables (i.e. they're not meant
+// to be exported)
+async function isLoggedOut(){
+  if (userHasBeenLoggedOut ? true : false) {
+    console.log(userHasBeenLoggedOut)
+  }
+}
+
+// -----------------------------------------------------
+//
 // The variables declaration area
 const { publicRuntimeConfig } = getConfig();
 const baseURL = `${publicRuntimeConfig.apiUrl}/users`;
 const userSubject = new BehaviorSubject(typeof window !== 'undefined' && JSON.parse(localStorage.getItem('user')));
+var userHasBeenLoggedOut = false;
 
 export const userService = {
   user: userSubject.asObservable(),
   get userValue() {
-    return userSubject.value
+    return userSubject.value;
+  },
+  get isLoggedOut() {
+    return userHasBeenLoggedOut;
   },
   login,
   logout,

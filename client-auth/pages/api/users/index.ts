@@ -7,6 +7,7 @@ import { db } from "../db";
 async function authenticate({
   username, password
 }) {
+  console.log("DB.User", db.User);
   const user = await db.User.scope("withHash").findOne({
     where: {
       username
@@ -52,12 +53,13 @@ async function getById(id) {
 
 async function create(parameters) {
   // validate the availability of the request username
+  console.log("LOG:", db, db.User);
   if (await db.User.findOne({
     where: {
       username: parameters.username
     }
   })) {
-    throw 'Username "' + parameters.username + '" is not available;
+    throw 'Username "' + parameters.username + '" is not available';
   }
 
   const user = new db.User(parameters);
