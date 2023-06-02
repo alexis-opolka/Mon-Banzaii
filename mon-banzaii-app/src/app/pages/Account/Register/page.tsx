@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import styles from './style.module.css'
-import {HeaderLogo} from '../../component/logo/HeaderLogo';
+import {HeaderLogo} from '../../../component/logo/HeaderLogo';
 import Link from 'next/link';
-import {ConnectButtum} from '../../component/buttum/ConnectButtum';
-import {DisconnectButtum} from '../../component/buttum/DisconnectButtum';
+import {ConnectButtum} from '../../../component/buttons/ConnectButton';
+import {DisconnectButtum} from '../../../component/buttons/DisconnectButton';
 
 
 export default function Register() {

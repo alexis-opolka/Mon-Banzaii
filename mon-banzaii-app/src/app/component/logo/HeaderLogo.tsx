@@ -10,7 +10,7 @@ export function HeaderLogo(): ReactElement {
      target="_blank"
      rel="noopener noreferrer"
     >
-                
+
       <Image
         src="/logo.png"
         alt="Banzaii project logo"
