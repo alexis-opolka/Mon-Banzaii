@@ -56,16 +56,16 @@ export default function Home() {
 
   return(
     <main className='flex min-h-screen flex-col items-center'>
-      <div>
+      <div className='w-full max-w-5xl justify-between font-mono lg:flex pt-4'>
         <HeaderLogo />
-        <div>
+        <div className='pb-2 pt-4 pr-5 pl-5'>
           {homeInteraction}
         </div>
       </div>
 
       <div>
-        <div>
-          <p> {homeMessage}</p>
+        <div className={styles.title}>
+          Mon Banzaii
         </div>
       </div>
 

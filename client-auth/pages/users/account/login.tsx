@@ -36,7 +36,7 @@ function Login() {
 
   return (
     <Layout>
-      <div className="card">
+      <div className="card ">
         <h4 className="card-header">Login</h4>
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +54,7 @@ function Login() {
               {formState.isSubmitting && <span className="spinner-border spinner-border-sm me-1"></span>}
               Login
             </button>
-            <Link href="/account/register" className="btn btn-link">Register</Link>
+            <Link href="/users/account/register" className="btn btn-link">Register</Link>
           </form>
         </div>
       </div>
