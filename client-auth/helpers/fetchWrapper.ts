@@ -1,18 +1,27 @@
 import getConfig from "next/config";
 import { userService } from "pages/services";
-
 // Functions
 function request(method) {
-  return (url, body) => {
-    const requestOptions = {
-      method,
-      headers: authHeader(url),
-    };
+  return async (url: string, body?: string | {}) => {
+    var requestOptions;
     if (body) {
+      requestOptions = {
+        method,
+        headers: authHeader(url),
+        body,
+      }
       requestOptions.headers["Content-Type"] = "application/json";
       requestOptions.body = JSON.stringify(body);
+    } else {
+      requestOptions = {
+        method,
+        headers: authHeader(url),
+      };
     }
-    return fetch(url, requestOptions).then(handleResponse);
+    return fetch(url, requestOptions).then(handleResponse)
+    .catch((error) => {
+      console.log("(Client)[Helpers | fetchWrapper:request]: ERROR -", error);
+    })
   }
 }
 
@@ -41,6 +50,8 @@ async function handleResponse(response) {
   const isJSON = response.headers?.get("content-type")?.includes("application/json");
   const data = isJSON ? await response.json() : null;
 
+  console.log("(Client)[Helpers | fetchWrapper:handleResponse]: LOG -", response);
+
   // check for error response codes
   // as the response status code isn't 200 ok
   if (!response.ok) {
@@ -55,6 +66,7 @@ async function handleResponse(response) {
     // if it doesn't exist, just default the message
     // to the response status
     const error = (data && data.message) || response.statusText;
+    console.log("(Client)[Helpers | fetchWrapper:handleResponse]: ERROR -", error)
     return Promise.reject(error);
   }
 
@@ -63,6 +75,7 @@ async function handleResponse(response) {
 
 // Variables
 const { publicRuntimeConfig } = getConfig();
+console.log(publicRuntimeConfig)
 
 export const fetchWrapper = {
   get: request('GET'),
@@ -70,3 +83,4 @@ export const fetchWrapper = {
   put: request('PUT'),
   delete: request('DELETE')
 };
+export default fetchWrapper;

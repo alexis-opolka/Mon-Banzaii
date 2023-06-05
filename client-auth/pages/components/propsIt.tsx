@@ -8,7 +8,7 @@ export function HomeMessageUserNotLoggedIn(){
     <>
       <div>
         <h1>Dear User,</h1> <br />
-        It seems you're not yet connected.
+        It seems you&apos;re not yet connected.
       </div>
     </>
   )
@@ -28,7 +28,7 @@ export function HomeMessageUserLoggedIn() {
     <>
       <div>
         <h1>Dear {userService.userValue?.username},</h1> <br />
-        It seems you're connected.
+        It seems you&apos;re connected.
       </div>
     </>
   )
@@ -48,7 +48,7 @@ export function HomeMessageUserLoggedOut() {
     <>
       <div>
         <h1>Dear User,</h1> <br />
-        It seems you've logged out.
+        It seems you&apos;ve logged out.
       </div>
     </>
   )
@@ -57,7 +57,7 @@ export function HomeMessageUserLoggedOut() {
 export function HomeInteractionUserLoggedOut(){
   return (
     <div>
-      Maybe you'd like to <RedirectToLogin />
+      Maybe you&apos;d like to <RedirectToLogin />
     </div>
   )
 }

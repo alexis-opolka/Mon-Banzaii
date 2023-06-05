@@ -3,7 +3,7 @@ import util from "util";
 import getConfig from "next/config";
 
 // Functions
-function jwtMiddleware(request, response) {
+export function jwtMiddleware(request, response) {
   const middleware = expressjwt({
     secret: serverRuntimeConfig.secret,
     algorithms: ["HS256"]
@@ -21,4 +21,3 @@ function jwtMiddleware(request, response) {
 
 // Variables declaration
 const { serverRuntimeConfig } = getConfig();
-export {jwtMiddleware}

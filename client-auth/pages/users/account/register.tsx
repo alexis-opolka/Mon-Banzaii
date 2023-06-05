@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import { Layout } from 'pages/components/users';
 import { userService, alertService } from 'pages/services';
+import {CreateCompatibleOutputReactNode} from "pages/components"
 
 // Functions
 function Register() {
@@ -48,22 +49,22 @@ function Register() {
             <div className="mb-3">
               <label className="form-label">First Name</label>
               <input name="firstName" type="text" {...register('firstName')} className={`form-control ${errors.firstName ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{errors.firstName?.message}</div>
+              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.firstName)}</div>
             </div>
             <div className="mb-3">
               <label className="form-label">Last Name</label>
               <input name="lastName" type="text" {...register('lastName')} className={`form-control ${errors.lastName ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{errors.lastName?.message}</div>
+              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.lastName)}</div>
             </div>
             <div className="mb-3">
               <label className="form-label">Username</label>
               <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{errors.username?.message}</div>
+              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.username)}</div>
             </div>
             <div className="mb-3">
               <label className="form-label">Password</label>
               <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{errors.password?.message}</div>
+              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.password)}</div>
             </div>
             <button disabled={formState.isSubmitting} className="btn btn-primary">
               {formState.isSubmitting && <span className="spinner-border spinner-border-sm me-1"></span>}
