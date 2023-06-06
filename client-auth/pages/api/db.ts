@@ -1,6 +1,7 @@
 import getConfig from "next/config";
 import mysql from "mysql2/promise";
-import { Sequelize, DataTypes, CreationOptional, InferAttributes, InferCreationAttributes } from "sequelize";
+import { Sequelize, DataTypes, Model, ModelDefined, ModelCtor } from "sequelize";
+import { any } from "prop-types";
 
 // Functions
 async function initialize() {
@@ -10,6 +11,7 @@ async function initialize() {
 
   // Let's check if the DB already exists, if not then create it
   // from scratch
+  console.log("(Server)[API | /db:initialize]: LOG - Initialize called!");
   const { host, port, database, user, password } = serverRuntimeConfig.env;
   const connection = await mysql.createConnection({host, port, user, password});
   await createDatabaseFromScratch(connection, database);
@@ -65,43 +67,6 @@ async function initialize() {
   db.initialized = true;
 }
 
-function userModel(sequelize: Sequelize) {
-  // This function creates the DB model for the User objects
-  const attributes = {
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    hash: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    }
-  };
-
-  const options = {
-    defaultScope: {
-      attributes : {
-        exclude: ['hash'],
-      }
-    },
-    scopes: {
-      withHash: {
-        attributes: {},
-      }
-    }
-  };
-
-  return sequelize.define('User', attributes, {options})
-}
-
 async function createDatabaseFromScratch(connection, database) {
   // this function is required to create the Database from
   // scratch if the DB is missing.
@@ -118,8 +83,8 @@ async function createDatabaseFromScratch(connection, database) {
 // Variables declaration
 const { serverRuntimeConfig } = getConfig();
 
-export const db = {
+export var db = {
   initialized: false,
-  initialize,
-  User: null?undefined:null,
+  initialize: initialize,
+  User: null,
 };

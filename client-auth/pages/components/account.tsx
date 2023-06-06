@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { userService } from '../services';
+import { HeaderLogo } from './logos';
 
-export { Layout };
-
-function Layout({ children }) {
+export default function Layout({ children }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -12,11 +11,17 @@ function Layout({ children }) {
     if (userService.userValue) {
       router.push('/');
     }
-  }, []);
+  }, [router]);
 
   return (
-    <div className="col-md-6 offset-md-3 mt-5">
-      {children}
-    </div>
+    <main className='flex min-h-screen flex-col items-center'>
+      <div className="w-full max-w-5xl justify-between font-mono lg:flex pt-4">
+        <HeaderLogo />
+      </div>
+
+      <div className='space-y-4 rounded-xl p-4 bg-gray-200 dark:bg-gray-800'>
+        {children}
+      </div>
+    </main>
   );
 }

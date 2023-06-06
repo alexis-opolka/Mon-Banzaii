@@ -1,8 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { userService } from './services';
-import { HomeMessageUserLoggedIn, HomeMessageUserNotLoggedIn, HomeMessageUserLoggedOut } from './components/propsIt';
+import {
+  HomeMessageUserLoggedIn, HomeMessageUserNotLoggedIn, HomeMessageUserLoggedOut,
+  HomeInteractionUserLoggedIn, HomeInteractionUserNotLoggedIn, HomeInteractionUserLoggedOut } from './components/propsIt';
 import { any } from 'prop-types';
-
+import styles from './style.module.css';
+import { HeaderLogo } from './components/logos';
 export default function Home() {
   // First of all, we need to manage if the user is connected
   // or if it's his first time accessing the root page.
@@ -14,13 +18,15 @@ export default function Home() {
   // registered which would mean a pretty big bug
 
   var homeMessage;
+  var homeInteraction;
   var dialogFinished;
 
   console.log("isLoggedOut:", userService.isLoggedOut);
 
   if (userService.isLoggedOut) {
     dialogFinished = true;
-    homeMessage = <HomeMessageUserLoggedOut />
+    homeMessage = <HomeMessageUserLoggedOut />;
+    homeInteraction= <HomeInteractionUserLoggedOut />;
   }
 
 
@@ -31,22 +37,50 @@ export default function Home() {
       // Let's say it and redirect him to the Login/Register page
       console.log("User seems to not be connected");
 
-      homeMessage = <HomeMessageUserNotLoggedIn />
+      // We set the corresponding homeMessage and
+      // homeInteraction variables
+      homeMessage = <HomeMessageUserNotLoggedIn />;
+      homeInteraction= <HomeInteractionUserNotLoggedIn />;
     } else {
       // The userValue isn't null
       // We interpret it as the user being connected
       // Let's say it and, for now, do nothing else.
       console.log("User seems to be connected with the account:", userService.userValue.username);
 
-      homeMessage = <HomeMessageUserLoggedIn />
+      // We set the corresponding homeMessage and
+      // homeInteraction variables
+      homeMessage = <HomeMessageUserLoggedIn />;
+      homeInteraction= <HomeInteractionUserLoggedIn />;
     }
   }
 
   return(
-    <div className='p-4'>
-      <div className='container'>
-        {homeMessage}
+    <main className='flex min-h-screen flex-col items-center'>
+      <div className='w-full max-w-5xl justify-between font-mono lg:flex pt-4'>
+        <HeaderLogo />
+        <div className='pb-2 pt-4 pr-5 pl-5'>
+          {homeInteraction}
+        </div>
       </div>
-    </div>
+
+      <div>
+        <div className={styles.title}>
+          Mon Banzaii
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <Image
+            src="/logo.png"
+            alt="Banzaii project logo"
+            className="dark:invert"
+            width={532}
+            height={530}
+            priority
+          />
+        </div>
+      </div>
+    </main>
   )
 }

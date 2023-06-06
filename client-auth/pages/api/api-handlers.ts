@@ -28,6 +28,7 @@ function apiHandler(handler) {
     } catch (error) {
       // Let's catch any error and throw it
       // to our `errorHandler` function
+      console.log("(Server)[API | Api-Handlers:apiHandler]: ERROR -", error, res)
       errorHandler(error, res);
     }
   }

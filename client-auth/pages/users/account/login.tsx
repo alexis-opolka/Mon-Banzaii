@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import { Layout } from '../../components/account.tsx';
+import Layout from '../../components/account.tsx';
 import { userService, alertService } from '../../services';
+import { UrlObject, Url, parse } from 'url';
+import {CreateCompatibleOutputReactNode} from 'pages/components';
 
 export default Login;
 
@@ -29,32 +31,32 @@ function Login() {
       .then(() => {
         // get return url from query parameters or default to '/'
         const returnUrl = router.query.returnUrl || '/';
-        router.push(returnUrl);
+        router.push(parse(returnUrl[0]));
       })
       .catch(alertService.error);
   }
 
   return (
     <Layout>
-      <div className="card">
+      <div className="card ">
         <h4 className="card-header">Login</h4>
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
               <label className="form-label">Username</label>
               <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{errors.username?.message}</div>
+              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.username)}</div>
             </div>
             <div className="mb-3">
               <label className="form-label">Password</label>
               <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{errors.password?.message}</div>
+              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.password)}</div>
             </div>
             <button disabled={formState.isSubmitting} className="btn btn-primary">
               {formState.isSubmitting && <span className="spinner-border spinner-border-sm me-1"></span>}
               Login
             </button>
-            <Link href="/account/register" className="btn btn-link">Register</Link>
+            <Link href="/users/account/register" className="btn btn-link">Register</Link>
           </form>
         </div>
       </div>

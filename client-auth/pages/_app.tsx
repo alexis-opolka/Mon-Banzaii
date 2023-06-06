@@ -1,12 +1,16 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
-// import 'styles/globals.css';
+import "./components/globals.css";
 
 import { userService } from './services';
 import { Nav, Alert } from './components';
 
+import { Inter } from 'next/font/google'
+
+
+const inter = Inter({ subsets: ['latin'] })
 export default App;
 
 function App({ Component, pageProps }) {
@@ -30,7 +34,7 @@ function App({ Component, pageProps }) {
             router.events.off('routeChangeStart', hideContent);
             router.events.off('routeChangeComplete', authCheck);
         }
-    }, []);
+    }, [router.asPath, router.events]);
 
     function authCheck(url) {
         // redirect to login page if accessing a private page and not logged in 
@@ -51,7 +55,7 @@ function App({ Component, pageProps }) {
     return (
         <>
             <Head>
-                <title>Next.js 13 - User Registration and Login Example</title>
+                <title>Mon Banzaii</title>
             </Head>
 
             <div className={`app-container ${user ? 'bg-light' : ''}`}>

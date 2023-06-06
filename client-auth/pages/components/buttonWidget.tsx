@@ -32,3 +32,9 @@ export function RedirectToUserManagement() {
     </Link>
   )
 }
+
+export const RedirectMe = {
+  RedirectToRegister,
+  RedirectToLogin,
+  RedirectToUserManagement
+}

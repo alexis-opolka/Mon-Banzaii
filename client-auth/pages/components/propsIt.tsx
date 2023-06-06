@@ -8,12 +8,17 @@ export function HomeMessageUserNotLoggedIn(){
     <>
       <div>
         <h1>Dear User,</h1> <br />
-        It seems you're not yet connected.
-      </div>
-      <div>
-        <RedirectToLogin /> or <RedirectToRegister />
+        It seems you&apos;re not yet connected.
       </div>
     </>
+  )
+}
+
+export function HomeInteractionUserNotLoggedIn(){
+  return (
+    <div>
+      <RedirectToLogin /> or <RedirectToRegister />
+    </div>
   )
 }
 
@@ -23,12 +28,17 @@ export function HomeMessageUserLoggedIn() {
     <>
       <div>
         <h1>Dear {userService.userValue?.username},</h1> <br />
-        It seems you're connected.
-      </div>
-      <div>
-        <RedirectToUserManagement />
+        It seems you&apos;re connected.
       </div>
     </>
+  )
+}
+
+export function HomeInteractionUserLoggedIn(){
+  return (
+    <div>
+      <RedirectToUserManagement />
+    </div>
   )
 }
 
@@ -38,11 +48,16 @@ export function HomeMessageUserLoggedOut() {
     <>
       <div>
         <h1>Dear User,</h1> <br />
-        It seems you've logged out.
-      </div>
-      <div>
-        Maybe you'd like to <RedirectToLogin />
+        It seems you&apos;ve logged out.
       </div>
     </>
+  )
+}
+
+export function HomeInteractionUserLoggedOut(){
+  return (
+    <div>
+      Maybe you&apos;d like to <RedirectToLogin />
+    </div>
   )
 }
