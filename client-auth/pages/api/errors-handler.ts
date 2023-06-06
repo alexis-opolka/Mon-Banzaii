@@ -13,13 +13,16 @@ function errorHandler(error, response) {
   if (error.name === "UnauthorizedError") {
     // JWT Authentication Error
     return response.status(401).json({
-      message: "Invalide Token"
+      message: "Invalid Token"
     });
   }
 
   // Otherwise, set the default error status code
   // to 500 internal error
-  console.log(error);
+  console.log("(Server)[API | Errors-handler:errorHandler]: ERROR -", error);
+  if (error.message == "Internal Server Error") {
+    console.log("(Server)[API | Errors-handler:errorHandler -> 'Internal Server Error']: ERROR -", error);
+  }
   return response.status(500).json({
     message: error.message
   });

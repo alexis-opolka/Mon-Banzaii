@@ -42,7 +42,9 @@ async function authenticate({
 async function getAll() {
   // The API call to return all the registered
   // users
-  return await db.User.findAll();
+  console.log("(Server)[API | /users/:getAll]: LOG -", db.User);
+  return db.User;
+  // return await db.User.findAll();
 }
 
 async function getById(id) {

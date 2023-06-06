@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldError, MultipleFieldErrors } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 import { userService, alertService } from '../services';
+import { CreateCompatibleOutputReactNode } from './contentConverter';
+import React from 'react';
 
 export { AddEdit };
 export { Layout };
@@ -72,19 +74,19 @@ function AddEdit(props) {
         <div className="mb-3 col">
           <label className="form-label">First Name</label>
           <input name="firstName" type="text" {...register('firstName')} className={`form-control ${errors.firstName ? 'is-invalid' : ''}`} />
-          <div className="invalid-feedback">{errors.firstName?.message}</div>
+          <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.firstName?.message)}</div>
         </div>
         <div className="mb-3 col">
           <label className="form-label">Last Name</label>
           <input name="lastName" type="text" {...register('lastName')} className={`form-control ${errors.lastName ? 'is-invalid' : ''}`} />
-          <div className="invalid-feedback">{errors.lastName?.message}</div>
+          <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.lastName?.message)}</div>
         </div>
       </div>
       <div className="row">
         <div className="mb-3 col">
           <label className="form-label">Username</label>
           <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-          <div className="invalid-feedback">{errors.email?.message}</div>
+          <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.email?.message)}</div>
         </div>
         <div className="mb-3 col">
           <label className="form-label">
@@ -92,7 +94,9 @@ function AddEdit(props) {
             {user && <em className="ms-1">(Leave blank to keep the same password)</em>}
           </label>
           <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-          <div className="invalid-feedback">{errors.password?.message}</div>
+          <div className="invalid-feedback">
+            {CreateCompatibleOutputReactNode(errors.password)}
+          </div>
         </div>
       </div>
       <div className="mb-3">

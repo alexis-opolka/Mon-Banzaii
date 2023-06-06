@@ -3,9 +3,7 @@ import { useRouter } from 'next/router';
 import { userService } from '../services';
 import { HeaderLogo } from './logos';
 
-export { Layout };
-
-function Layout({ children }) {
+export default function Layout({ children }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -13,7 +11,7 @@ function Layout({ children }) {
     if (userService.userValue) {
       router.push('/');
     }
-  }, []);
+  }, [router]);
 
   return (
     <main className='flex min-h-screen flex-col items-center'>

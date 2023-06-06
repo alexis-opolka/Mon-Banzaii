@@ -5,11 +5,14 @@ import { Layout } from "../components/users";
 import { userService } from "pages/services";
 
 // Functions
-function Index() {
+export default function Index() {
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
-    userService.getAll().then(x => setUsers(x));
+    userService.getAll().then(x => {
+      console.log("USER !:", x);
+      setUsers(x);
+    });
   }, []);
 
   function deleteUser(id){
@@ -76,5 +79,3 @@ function Index() {
   );
 }
 
-// Variables declaration
-export default Index;
