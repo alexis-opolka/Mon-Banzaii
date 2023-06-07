@@ -7,9 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import { YupFormInput, createRequiredMsg } from 'pages/components/account';
-import Link from "next/link";
 import {useRouter} from "next/router";
-import { parse } from 'url';
 
 export default function Index(){
 
@@ -134,8 +132,6 @@ function UserInformationActionPassword(){
 }
 
 function UserInformationActionEmail() {
-  const router = useRouter();
-
   const validationSchema = Yup.object().shape({
     email: Yup.string().required(createRequiredMsg("Email")).email("Email must be a valid email address"),
   });
