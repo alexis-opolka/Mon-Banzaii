@@ -1,0 +1,43 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: Nextjs
+      MYSQL_PASSWORD: NextjsSAE23
+    volumes:
+      - db_data:/var/lib/mysql
+
+  python_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    restart: always
+    ports:
+      - 8000:8000
+
+  nodejs_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodejs
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client-auth:/app
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: always
+    ports:
+      - 5000:5000
+    volumes:
+      - ./client-auth/.next
+
+volumes:
+  db_data:

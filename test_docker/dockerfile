@@ -1,0 +1,27 @@
+#FROM ubuntu:latest
+#
+## Installation de Python
+#RUN apt update && apt-get install -y python3
+#
+## Installation de pip
+#RUN apt-get install -y python3-pip
+#RUN python3 -m pip install mysql-connector-python
+#
+## Installation de Node.js
+#RUN apt-get install -y curl && \
+#    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+#    apt-get install -y nodejs
+#
+## Copie du répertoire app/create-me dans le conteneur
+#COPY create-me /app/create-me
+#COPY client-auth /app/client-auth
+#COPY init-script.sh init-script.sh
+#
+##Exécution du script d'initialisation au démarrage du conteneur
+#CMD init-script.sh
+#
+#RUN python3 /app/create-me/main.py
+#RUN cd /app/client-auth 
+#RUN npm install i
+#RUN npm run dev
+

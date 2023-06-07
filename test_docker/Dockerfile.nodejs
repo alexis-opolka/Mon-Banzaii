@@ -1,0 +1,6 @@
+FROM node:latest
+WORKDIR /app
+COPY create-me/package.json ./
+#RUN npm install
+COPY create-me .
+CMD ["node", "app.js"]

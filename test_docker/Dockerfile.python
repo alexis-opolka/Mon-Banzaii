@@ -1,0 +1,7 @@
+FROM python:3
+WORKDIR /app
+
+RUN python3 -m pip install mysql-connector-python
+
+COPY create-me /app/create-me
+CMD cd create-me && python3 main.py
