@@ -20,3 +20,15 @@ export function HeaderLogo(): ReactElement {
     </a>
   )
 }
+
+export function NavHeaderLogo(): ReactElement {
+  return (
+      <Image
+        src="/logo.png"
+        alt="Banzaii project logo"
+        width={55.72}
+        height={55.2}
+        priority
+      />
+  )
+}

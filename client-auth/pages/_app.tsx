@@ -1,19 +1,22 @@
 import Head from 'next/head';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { createTheme, NextUIProvider, Text } from '@nextui-org/react';
 
 import "./components/globals.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 import { userService } from './services';
 import { Nav, Alert } from './components';
+import { nextUILightTheme } from './components/nextui';
+import { Footer } from 'pages/components';
 
 import { Inter } from 'next/font/google'
 
 
 const inter = Inter({ subsets: ['latin'] })
-export default App;
 
-function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
     const router = useRouter();
     const [user, setUser] = useState(null);
     const [authorized, setAuthorized] = useState(false);
@@ -40,14 +43,17 @@ function App({ Component, pageProps }) {
         // redirect to login page if accessing a private page and not logged in 
         setUser(userService.userValue);
         const publicPaths = ['/users/account/login', '/users/account/register', '/'];
-        const path = url.split('?')[0];
+        const path:string = url.split('?')[0];
         if (!userService.userValue && !publicPaths.includes(path)) {
+            // The user is not connected and is to be redirected
+            // to the login page
             setAuthorized(false);
             router.push({
                 pathname: '/account/login',
                 query: { returnUrl: router.asPath }
             });
         } else {
+            // The user is connected
             setAuthorized(true);
         }
     }
@@ -58,13 +64,16 @@ function App({ Component, pageProps }) {
                 <title>Mon Banzaii</title>
             </Head>
 
-            <div className={`app-container ${user ? 'bg-light' : ''}`}>
-                <Nav />
-                <Alert />
-                {authorized &&
-                    <Component {...pageProps} />
-                }
-            </div>
+            <NextUIProvider theme={nextUILightTheme}>
+                <div className={`app-container ${user ? 'bg-light' : ''} h-full layout-container`} style={{ overflow: "-moz-hidden-unscrollable" }}>
+                    <Nav />
+                    <Alert />
+                    {authorized &&
+                        <Component {...pageProps} />
+                    }
+                    <Footer />
+                </div>
+            </NextUIProvider>
         </>
     );
 }

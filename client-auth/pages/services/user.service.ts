@@ -82,6 +82,10 @@ async function isLoggedOut(){
   }
 }
 
+async function accessProfile(){
+  Router.push("/users/account/profile", "/@me/profile")
+}
+
 // -----------------------------------------------------
 //
 // The variables declaration area
@@ -98,6 +102,10 @@ export const userService = {
   get isLoggedOut() {
     return userHasBeenLoggedOut;
   },
+  get isAdmin(){
+    return userSubject.value.isAdmin;
+  },
+  accessProfile,
   login,
   logout,
   register,

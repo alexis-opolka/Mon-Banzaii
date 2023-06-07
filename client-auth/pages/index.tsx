@@ -20,6 +20,7 @@ export default function Home() {
   var homeMessage;
   var homeInteraction;
   var dialogFinished;
+  var isLoggedIn;
 
   console.log("isLoggedOut:", userService.isLoggedOut);
 
@@ -51,18 +52,31 @@ export default function Home() {
       // homeInteraction variables
       homeMessage = <HomeMessageUserLoggedIn />;
       homeInteraction= <HomeInteractionUserLoggedIn />;
+      isLoggedIn = true;
+      console.log("user Status", isLoggedIn);
+    }
+  }
+
+  function CreateUpperOutput(){
+    if (isLoggedIn) {
+      return (
+        <></>
+      )
+    } else {
+      return (
+        <div className='w-full max-w-5xl justify-between font-mono lg:flex pt-4'>
+          <HeaderLogo />
+          <div className='pb-2 pt-4 pr-5 pl-5'>
+            {homeInteraction}
+          </div>
+        </div>
+      )
     }
   }
 
   return(
     <main className='flex min-h-screen flex-col items-center'>
-      <div className='w-full max-w-5xl justify-between font-mono lg:flex pt-4'>
-        <HeaderLogo />
-        <div className='pb-2 pt-4 pr-5 pl-5'>
-          {homeInteraction}
-        </div>
-      </div>
-
+      {CreateUpperOutput()}
       <div>
         <div className={styles.title}>
           Mon Banzaii

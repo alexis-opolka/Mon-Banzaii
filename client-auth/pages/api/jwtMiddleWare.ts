@@ -2,6 +2,10 @@ import {expressjwt} from "express-jwt"
 import util from "util";
 import getConfig from "next/config";
 
+// Variables declaration
+const { serverRuntimeConfig } = getConfig();
+console.log("(Server)[API | /jwtMiddleWare:GLOBAL:ServerRuntimeConfig]: LOG -", serverRuntimeConfig);
+
 // Functions
 export function jwtMiddleware(request, response) {
   const middleware = expressjwt({
@@ -17,7 +21,3 @@ export function jwtMiddleware(request, response) {
 
   return util.promisify(middleware)(request, response);
 }
-
-
-// Variables declaration
-const { serverRuntimeConfig } = getConfig();

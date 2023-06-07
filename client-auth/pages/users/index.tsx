@@ -15,6 +15,10 @@ export default function Index() {
     });
   }, []);
 
+  // We make sure the user has the rights to see this page,
+  // otherwise just stop there
+  if (!userService.userValue?.isAdmin) { return null };
+
   function deleteUser(id){
     setUsers(users.map(x => {
       if (x.id === id) {

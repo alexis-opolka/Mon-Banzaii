@@ -2,7 +2,7 @@ import getConfig from "next/config";
 import { userService } from "pages/services";
 // Functions
 function request(method) {
-  return async (url: string, body?: string | {}) => {
+  return async (url: string, body?: any) => {
     var requestOptions;
     if (body) {
       requestOptions = {
@@ -12,11 +12,17 @@ function request(method) {
       }
       requestOptions.headers["Content-Type"] = "application/json";
       requestOptions.body = JSON.stringify(body);
+      console.log(requestOptions);
     } else {
       requestOptions = {
         method,
         headers: authHeader(url),
       };
+
+      const res = await fetch(url, requestOptions);
+      const data = await res.body;
+
+      console.log("(Client)[Helpers | fetchWrapper:request]: LOG -", requestOptions, res, data);
     }
     return fetch(url, requestOptions).then(handleResponse)
     .catch((error) => {
@@ -29,7 +35,8 @@ function authHeader(url) {
   // We return an authorization header with jwt
   // if user is logged in and the request is
   // to the api URL
-  const user = userService.userValue;
+  console.log("(Client)[Helpers | fetchWrapper:authHeader]: LOG -", url, userService?.userValue, userService?.userValue?.token, url.startsWith(publicRuntimeConfig.apiUrl), userService?.userValue?.token && url.startsWith(publicRuntimeConfig.apiUrl));
+  const user = userService?.userValue;
   const isLoggedIn = user?.token;
   const isApiUrl = url.startsWith(publicRuntimeConfig.apiUrl);
   if (isLoggedIn && isApiUrl) {

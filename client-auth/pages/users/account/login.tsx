@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import Layout from '../../components/account.tsx';
 import { userService, alertService } from '../../services';
 import { UrlObject, Url, parse } from 'url';
 import {CreateCompatibleOutputReactNode} from 'pages/components';
+import Layout, {YupFormInput} from 'pages/components/account';
 
 export default Login;
 
@@ -42,16 +42,8 @@ function Login() {
         <h4 className="card-header">Login</h4>
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-3">
-              <label className="form-label">Username</label>
-              <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.username)}</div>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Password</label>
-              <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-              <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errors.password)}</div>
-            </div>
+            <YupFormInput inputName='Username' inputToRegister='username' registerFunction={register} inputType='username' errorsHolder={errors.username} />
+            <YupFormInput inputName='Password' inputToRegister='password' registerFunction={register} inputType='password' errorsHolder={errors.password} />
             <button disabled={formState.isSubmitting} className="btn btn-primary">
               {formState.isSubmitting && <span className="spinner-border spinner-border-sm me-1"></span>}
               Login
