@@ -52,6 +52,10 @@ export function YupFormInput({
   )
 }
 
+export function createRequiredMsg(requiredElement: string, minimumRequiredChars?: number) {
+  return minimumRequiredChars ? `${requiredElement} must be at least ${minimumRequiredChars} characters` : `${requiredElement} is required`;
+}
+
 // Variables declaration
 export const MinidenticonImg = ({ username, saturation, lightness, ...props }) => {
   const svgURI = useMemo(

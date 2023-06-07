@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }) {
             // to the login page
             setAuthorized(false);
             router.push({
-                pathname: '/account/login',
+                pathname: '/users/account/login',
                 query: { returnUrl: router.asPath }
             });
         } else {

@@ -29,6 +29,10 @@ async function initialize() {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    email : {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     hash: {
       type: DataTypes.STRING,
       allowNull: false,

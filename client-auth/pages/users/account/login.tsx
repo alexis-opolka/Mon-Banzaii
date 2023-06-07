@@ -5,19 +5,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 import { userService, alertService } from '../../services';
-import { UrlObject, Url, parse } from 'url';
-import {CreateCompatibleOutputReactNode} from 'pages/components';
-import Layout, {YupFormInput} from 'pages/components/account';
+import { parse } from 'url';
+import Layout, {YupFormInput, createRequiredMsg} from 'pages/components/account';
 
-export default Login;
-
-function Login() {
+export default function Login() {
   const router = useRouter();
 
   // form validation rules 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required('Username is required'),
-    password: Yup.string().required('Password is required')
+    username: Yup.string().required(createRequiredMsg("Username")),
+    password: Yup.string().required(createRequiredMsg("Password"))
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -47,8 +44,12 @@ function Login() {
             <button disabled={formState.isSubmitting} className="btn btn-primary">
               {formState.isSubmitting && <span className="spinner-border spinner-border-sm me-1"></span>}
               Login
-            </button>
-            <Link href="/users/account/register" className="btn btn-link">Register</Link>
+            </button>&nbsp; or &nbsp;
+            <Link href="/users/account/register">
+              <button className="btn btn-primary">
+                Register
+              </button>
+            </Link>
           </form>
         </div>
       </div>

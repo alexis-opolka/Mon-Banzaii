@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import { userService, alertService } from 'pages/services';
-import Layout, { YupFormInput } from 'pages/components/account';
+import Layout, { YupFormInput, createRequiredMsg } from 'pages/components/account';
 
 
 // Functions
@@ -16,6 +16,7 @@ function Register() {
     firstName: Yup.string().required(createRequiredMsg("First Name")),
     lastName: Yup.string().required(createRequiredMsg("Last Name")),
     username: Yup.string().required(createRequiredMsg("Username")),
+    email: Yup.string().required(createRequiredMsg("Email")),
     password: Yup.string().required(createRequiredMsg("Password"))
       .min(6, createRequiredMsg("Password", 6)),
     passwordVerification: Yup.string().required(createRequiredMsg("Password"))
@@ -53,6 +54,7 @@ function Register() {
             <YupFormInput inputName='First Name' inputToRegister='firstName' registerFunction={register} inputType='text' errorsHolder={errors.firstName} />
             <YupFormInput inputName='Last Name' inputToRegister='lastName' registerFunction={register} inputType='text' errorsHolder={errors.lastName} />
             <YupFormInput inputName='Username' inputToRegister='username' registerFunction={register} inputType='username' errorsHolder={errors.username} />
+            <YupFormInput inputName='Email' inputToRegister='email' registerFunction={register} inputType='email' errorsHolder={errors.email} />
             <YupFormInput inputName='Password' inputToRegister='password' registerFunction={register} inputType='password' errorsHolder={errors.password} />
             <YupFormInput inputName='Re-enter your Password' inputToRegister='passwordVerification' registerFunction={register} inputType='password' errorsHolder={errors.passwordVerification}/>
             <button disabled={formState.isSubmitting} className="btn btn-primary">
@@ -65,10 +67,6 @@ function Register() {
       </div>
     </Layout>
   )
-}
-
-function createRequiredMsg(requiredElement: string, minimumRequiredChars?: number) {
-  return minimumRequiredChars ? `${requiredElement} is required` : `${requiredElement} must be at least ${minimumRequiredChars} characters`;
 }
 
 

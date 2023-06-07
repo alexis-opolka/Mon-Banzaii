@@ -32,7 +32,7 @@ function apiHandler(handler) {
     } catch (error) {
       // Let's catch any error and throw it
       // to our `errorHandler` function
-      console.log("(Server)[API | Api-Handlers:apiHandler]: ERROR -", error, res)
+      console.log("(Server)[API | Api-Handlers:apiHandler]: ERROR -", error)
       errorHandler(error, res);
     }
   }
