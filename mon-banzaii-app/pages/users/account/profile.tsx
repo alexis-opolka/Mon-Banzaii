@@ -1,12 +1,12 @@
-import { Layout } from "pages/components/users";
-import { MinidenticonImg } from "pages/components/account";
-import { userService, alertService } from "pages/services";
+import { Layout } from "components/users";
+import { MinidenticonImg } from "components/account";
+import { userService, alertService } from "services";
 import React from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
-import { YupFormInput, createRequiredMsg } from 'pages/components/account';
+import { YupFormInput, createRequiredMsg } from 'components/account';
 import {useRouter} from "next/router";
 
 export default function Index(){
@@ -15,10 +15,18 @@ export default function Index(){
   // set but we never can be sure, so we're going to check.
   const user = userService.userValue ? userService.userValue : undefined;
   var isTheFirstUser;
+  var isNotAnAdmin;
+
   if (user?.id == 1){
     isTheFirstUser = true;
   } else {
     isTheFirstUser = false;
+  }
+
+  if (user?.admin == "false") {
+    isNotAnAdmin = true;
+  } else {
+    isNotAnAdmin = false;
   }
 
   // If `user` is undefined, the userValue has not been set
@@ -67,7 +75,7 @@ export default function Index(){
         <button className="btn btn-outline-danger" onClick={userService.logout}>
           Logout
         </button>
-        {isTheFirstUser && <button className="btn btn-outline-primary mr-3" onClick={BeAnAdmin}>Be Admin</button>}
+        {isTheFirstUser && isNotAnAdmin && <button className="btn btn-outline-primary mr-3" onClick={BeAnAdmin}>Be Admin</button>}
       </div>
     </Layout>
   )

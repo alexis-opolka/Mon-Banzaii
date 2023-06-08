@@ -1,0 +1,2 @@
+UPDATE `internal_data` SET `last_modified` = '2023-06-08 06:12:59.309617' WHERE `internal_data`.`id` = 002;
+UPDATE `internal_data` SET `last_modified` = '2023-06-08 06:12:59.312806' WHERE `internal_data`.`id` = 002;

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Spinner } from "../components";
-import { Layout } from "../components/users";
-import { userService } from "pages/services";
-import { isUserAdmin } from "pages/components/account";
+import { Spinner } from "../../components";
+import { Layout } from "../../components/users";
+import { userService } from "services";
+import { isUserAdmin } from "components/account";
 import { Text } from "@nextui-org/react";
 
 // Functions

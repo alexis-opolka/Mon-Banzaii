@@ -1,5 +1,5 @@
 import getConfig from "next/config";
-import { userService } from "pages/services";
+import { userService } from "services";
 // Functions
 function request(method) {
   return async (url: string, body?: any) => {

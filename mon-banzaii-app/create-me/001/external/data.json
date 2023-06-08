@@ -1,0 +1,25 @@
+{
+    "id": "001",
+    "data": [
+        {
+            "type": "water level",
+            "description": "Water level (in %) in the current Banzaii",
+            "timeline": [
+                {
+                    "value": "93",
+                    "timestamp": "1672527600"
+                }
+            ]
+        },
+        {
+            "type": "power on",
+            "description": "the Banzaii has been on since",
+            "timeline": [
+                {
+                    "value": "0",
+                    "timestamp": "1672527600"
+                }
+            ]
+        }
+    ]
+}

@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import { userService, alertService } from '../../services';
+import { userService, alertService } from '../../../services';
 import { parse } from 'url';
-import Layout, {YupFormInput, createRequiredMsg} from 'pages/components/account';
+import Layout, {YupFormInput, createRequiredMsg} from 'components/account';
 
 export default function Login() {
   const router = useRouter();
