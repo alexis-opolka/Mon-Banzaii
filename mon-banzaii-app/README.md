@@ -17,3 +17,9 @@ Elle sera à déployer via un docker.
 L'application doit disposer d'un système d'authentification
 simple (FA), d'une gestion de thème et les routes comprenant
 l'affichage de données devront être des routes sécurisées.
+
+## Rendu
+
+Dans le cadre de cette SAE une partie des documents sont hébergé sur un depot github.  
+Voici le lien vers le depot github : [https://github.com/alexis-opolka/Mon-Banzaii](https://github.com/alexis-opolka/Mon-Banzaii).  
+Tout les document qui nous sont demandé sont dans le dossier rendu, est nous avons aussi mis le dossier contenant le site web nommé Mon-Banzaii-app.  
