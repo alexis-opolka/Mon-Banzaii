@@ -1,7 +1,6 @@
 import getConfig from "next/config";
 import mysql from "mysql2/promise";
-import { Sequelize, DataTypes, Model, ModelDefined, ModelCtor } from "sequelize";
-import { any } from "prop-types";
+import { Sequelize, DataTypes } from "sequelize";
 
 // Functions
 async function initialize() {
@@ -83,9 +82,7 @@ async function createDatabaseFromScratch(connection, database) {
   // to the engine in order to set up correctly the DB
   // and its tables.
   //
-  // TODO: createDatabaseFromScratch function
-
-  await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\``)
+  await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\``);
 }
 
 // Variables declaration

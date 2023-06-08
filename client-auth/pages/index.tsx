@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { userService } from './services';
+import { alertService, userService } from './services';
 import {
   HomeMessageUserLoggedIn, HomeMessageUserNotLoggedIn, HomeMessageUserLoggedOut,
   HomeInteractionUserLoggedIn, HomeInteractionUserNotLoggedIn, HomeInteractionUserLoggedOut } from './components/propsIt';

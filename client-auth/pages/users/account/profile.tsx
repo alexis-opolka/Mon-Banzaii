@@ -14,6 +14,12 @@ export default function Index(){
   // If the user can access this page `userService.userValue` should be
   // set but we never can be sure, so we're going to check.
   const user = userService.userValue ? userService.userValue : undefined;
+  var isTheFirstUser;
+  if (user?.id == 1){
+    isTheFirstUser = true;
+  } else {
+    isTheFirstUser = false;
+  }
 
   // If `user` is undefined, the userValue has not been set
   // We then return a null result
@@ -61,23 +67,23 @@ export default function Index(){
         <button className="btn btn-outline-danger" onClick={userService.logout}>
           Logout
         </button>
-        {/* <button className="btn btn-outline-primary" onClick={BeAnAdmin}>Be Admin</button> */}
+        {isTheFirstUser && <button className="btn btn-outline-primary mr-3" onClick={BeAnAdmin}>Be Admin</button>}
       </div>
     </Layout>
   )
 }
 
-// async function BeAnAdmin(){
-//   const user = userService.userValue ? userService.userValue : undefined;
+async function BeAnAdmin(){
+  const user = userService.userValue ? userService.userValue : undefined;
 
-//   await userService.update(user.id, { username: user.username, admin: "true" })
-//     .then(() => {
-//       alertService.success("User's right successfully updated")
-//     })
-//     .catch((error) => {
-//       alertService.error(error);
-//     })
-// }
+  await userService.update(user.id, { username: user.username, admin: "true" })
+    .then(() => {
+      alertService.success("User's right successfully updated")
+    })
+    .catch((error) => {
+      alertService.error(error);
+    })
+}
 
 function UserInformation({title, data, ...props}: {title?: string, data?:any, props?: {}}){
 
