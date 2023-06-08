@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { NavHeaderLogo } from "./logos";
 import { Dropdown, User, Grid } from "@nextui-org/react";
 import { minidenticon } from "minidenticons";
+import { isUserAdmin } from "./account";
 
 // Functions
 function Nav() {
@@ -20,7 +21,7 @@ function Nav() {
   // is logged in
   if (!user) return null;
 
-  const username = userService.userValue?.username;
+  console.log("Is the User an admin:", isUserAdmin());
 
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark px-3">
@@ -32,7 +33,7 @@ function Nav() {
       <div className="collapse navbar-collapse">
         <div className="navbar-nav">
           <NavLink href="/dashboard" exact className="nav-item nav-link">Dashboard</NavLink>
-          {user.isAdmin && <NavLink href="/users" exact className="nav-item nav-link">Users</NavLink>}
+          {isUserAdmin() && <NavLink href="/users" exact className="nav-item nav-link">Users</NavLink>}
         </div>
       </div>
       <div>

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { RedirectToLogin, RedirectToUserManagement, RedirectToRegister } from "./buttonWidget";
 import { userService } from "pages/services";
+import { Text } from "@nextui-org/react";
 
 export function HomeMessageUserNotLoggedIn(){
 
@@ -56,8 +56,8 @@ export function HomeMessageUserLoggedOut() {
 
 export function HomeInteractionUserLoggedOut(){
   return (
-    <div>
+    <Text color="$TitleColor">
       Maybe you&apos;d like to <RedirectToLogin />
-    </div>
+    </Text>
   )
 }

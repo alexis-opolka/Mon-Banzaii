@@ -7,6 +7,9 @@ import {
 import { any } from 'prop-types';
 import styles from './style.module.css';
 import { HeaderLogo } from './components/logos';
+import { Text } from '@nextui-org/react';
+
+
 export default function Home() {
   // First of all, we need to manage if the user is connected
   // or if it's his first time accessing the root page.
@@ -78,9 +81,7 @@ export default function Home() {
     <main className='flex min-h-screen flex-col items-center'>
       {CreateUpperOutput()}
       <div>
-        <div className={styles.title}>
-          Mon Banzaii
-        </div>
+        <AppTitle />
       </div>
 
       <div>
@@ -97,4 +98,10 @@ export default function Home() {
       </div>
     </main>
   )
+}
+
+function AppTitle() {
+  return <Text css={{ color: '$TitleColor' }}>
+    <div className={styles.title}>Mon banzaii</div>
+  </Text>
 }

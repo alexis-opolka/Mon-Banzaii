@@ -18,12 +18,13 @@ export const nextUILightTheme = createTheme({
       primaryShadow: '$green500',
 
       link: '#4AFE7B',
-      background: '$white',
-      primaryColor: '$white',
 
       // Attribute used for the `::selection`
       // pseudo-element
       selection: '$green700',
+
+      // App Title specific style
+      TitleColor: '$black',
     },
     space: {},
     fonts: {},

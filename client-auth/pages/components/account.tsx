@@ -35,16 +35,18 @@ export function YupFormInput({
     inputToRegister,
     registerFunction,
     errorsHolder,
-    inputType
+    inputType,
+    className,
   }: {
     inputName:string,
     inputToRegister: string,
     registerFunction: any,
     errorsHolder: any,
-    inputType: string
+    inputType: string,
+    className?: string
   }): JSX.Element{
   return(
-    <div className="mb-3">
+    <div className={"mb-3 "+ className}>
       <label className="form-label">{inputName}</label>
       <input name={inputToRegister} type={inputType} {...registerFunction(inputToRegister)} className={`form-control ${errorsHolder ? 'is-invalid' : ''}`} />
       <div className="invalid-feedback">{CreateCompatibleOutputReactNode(errorsHolder)}</div>
@@ -54,6 +56,14 @@ export function YupFormInput({
 
 export function createRequiredMsg(requiredElement: string, minimumRequiredChars?: number) {
   return minimumRequiredChars ? `${requiredElement} must be at least ${minimumRequiredChars} characters` : `${requiredElement} is required`;
+}
+
+export function isUserAdmin(){
+  console.log(userService.userValue, userService.userValue.admin);
+  if (userService.userValue.admin == "true"){
+    return true;
+  }
+  return false;
 }
 
 // Variables declaration

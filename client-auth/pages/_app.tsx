@@ -65,7 +65,7 @@ export default function App({ Component, pageProps }) {
             </Head>
 
             <NextUIProvider theme={nextUILightTheme}>
-                <div className={`app-container ${user ? 'bg-light' : ''} h-full layout-container`} style={{ overflow: "-moz-hidden-unscrollable" }}>
+                <div className={`app-container bg-light h-full layout-container`} style={{ overflow: "-moz-hidden-unscrollable" }}>
                     <Nav />
                     <Alert />
                     {authorized &&

@@ -102,9 +102,6 @@ export const userService = {
   get isLoggedOut() {
     return userHasBeenLoggedOut;
   },
-  get isAdmin(){
-    return userSubject.value.isAdmin;
-  },
   accessProfile,
   login,
   logout,

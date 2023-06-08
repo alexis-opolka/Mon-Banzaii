@@ -61,10 +61,23 @@ export default function Index(){
         <button className="btn btn-outline-danger" onClick={userService.logout}>
           Logout
         </button>
+        {/* <button className="btn btn-outline-primary" onClick={BeAnAdmin}>Be Admin</button> */}
       </div>
     </Layout>
   )
 }
+
+// async function BeAnAdmin(){
+//   const user = userService.userValue ? userService.userValue : undefined;
+
+//   await userService.update(user.id, { username: user.username, admin: "true" })
+//     .then(() => {
+//       alertService.success("User's right successfully updated")
+//     })
+//     .catch((error) => {
+//       alertService.error(error);
+//     })
+// }
 
 function UserInformation({title, data, ...props}: {title?: string, data?:any, props?: {}}){
 

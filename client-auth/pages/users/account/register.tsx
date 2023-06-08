@@ -51,8 +51,10 @@ function Register() {
         <h4 className="card-header">Register</h4>
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <YupFormInput inputName='First Name' inputToRegister='firstName' registerFunction={register} inputType='text' errorsHolder={errors.firstName} />
-            <YupFormInput inputName='Last Name' inputToRegister='lastName' registerFunction={register} inputType='text' errorsHolder={errors.lastName} />
+            <div className='d-flex flex-row'>
+              <YupFormInput inputName='First Name' inputToRegister='firstName' registerFunction={register} inputType='text' errorsHolder={errors.firstName} className="mr-4" />
+              <YupFormInput inputName='Last Name' inputToRegister='lastName' registerFunction={register} inputType='text' errorsHolder={errors.lastName} />
+            </div>
             <YupFormInput inputName='Username' inputToRegister='username' registerFunction={register} inputType='username' errorsHolder={errors.username} />
             <YupFormInput inputName='Email' inputToRegister='email' registerFunction={register} inputType='email' errorsHolder={errors.email} />
             <YupFormInput inputName='Password' inputToRegister='password' registerFunction={register} inputType='password' errorsHolder={errors.password} />

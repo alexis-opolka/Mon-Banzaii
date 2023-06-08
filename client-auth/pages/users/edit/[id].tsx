@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Layout, AddEdit } from 'pages/components/users';
 import { Spinner } from 'pages/components';
 import { userService, alertService } from 'pages/services';
+import { Text } from '@nextui-org/react';
 
 export default Edit;
 
@@ -23,7 +24,7 @@ function Edit() {
 
   return (
     <Layout>
-      <h1>Edit User</h1>
+      <Text color='$TitleColor'><h1>Edit User</h1></Text>
       {user ? <AddEdit user={user} /> : <Spinner />}
     </Layout>
   );

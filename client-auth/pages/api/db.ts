@@ -44,6 +44,10 @@ async function initialize() {
     lastName: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    admin: {
+      type: DataTypes.STRING,
+      allowNull: true,
     }
   }, {
     defaultScope: {
