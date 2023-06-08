@@ -20,6 +20,6 @@ l'affichage de données devront être des routes sécurisées.
 
 ## Rendu
 
-Dans le cadre de cette SAE une partie des documents sont hébergé sur un depot github.  
-Voici le lien vers le depot github : [https://github.com/alexis-opolka/Mon-Banzaii](https://github.com/alexis-opolka/Mon-Banzaii).  
-Tout les document qui nous sont demandé sont dans le dossier rendu, est nous avons aussi mis le dossier contenant le site web nommé Mon-Banzaii-app.  
+Dans le cadre de cette SAE tous les documents sont hébergés sur un dépôt github.  
+Voici le lien vers le depot github : [alexis-opolka/Mon-Banzaii](https://github.com/alexis-opolka/Mon-Banzaii).  
+Tout les documents qui nous sont demandés sont dans le dossier rendu.  
