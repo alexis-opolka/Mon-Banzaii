@@ -76,9 +76,6 @@ async function accessProfile(){
   Router.push("/users/account/profile", "/@me/profile")
 }
 
-async function accessProfile(){
-  Router.push("/users/account/profile", "/@me/profile")
-}
 
 // -----------------------------------------------------
 //
