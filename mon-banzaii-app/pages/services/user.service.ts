@@ -2,8 +2,9 @@
 import { BehaviorSubject } from "rxjs";
 import getConfig from "next/config";
 import Router from "next/router";
-import { fetchWrapper } from "../helpers";
+import { fetchWrapper } from "../../helpers";
 import { alertService } from "./alert.service";
+import { useState, useEffect } from "react";
 
 // The function definition area
 async function login(username: String, password: String) {
@@ -72,8 +73,13 @@ async function _delete(id) {
   }
 }
 
-async function accessProfile(){
-  Router.push("/users/account/profile", "/@me/profile")
+// Functions used to verify file-scope variables
+// called internal variables (i.e. they're not meant
+// to be exported)
+async function isLoggedOut(){
+  if (userHasBeenLoggedOut ? true : false) {
+    console.log(userHasBeenLoggedOut)
+  }
 }
 
 async function accessProfile(){
