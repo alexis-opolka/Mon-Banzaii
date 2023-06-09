@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { Layout, AddEdit } from 'pages/components/users';
-import { Spinner } from 'pages/components';
-import { userService, alertService } from 'pages/services';
+import { Layout, AddEdit } from 'components/users';
+import { Spinner } from 'components';
+import { userService, alertService } from 'services';
 import { Text } from '@nextui-org/react';
 
 export default Edit;

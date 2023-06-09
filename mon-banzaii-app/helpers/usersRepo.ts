@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:mon-banzaii-app/helpers/usersRepo.ts
 import getConfig from "next/config";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -125,4 +126,16 @@ export const usersRepo = {
   create,
   update,
   delete: _delete
+========
+import { usersRepo } from 'helpers';
+import { apiHandler } from '..';
+
+export default apiHandler({
+  get: getAll
+});
+
+async function getAll(req, res) {
+  const users = await usersRepo.getAll();
+  return res.status(200).json(users);
+>>>>>>>> main:client-auth/pages/api/users/index.ts
 }

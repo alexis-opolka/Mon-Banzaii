@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { createTheme, NextUIProvider, Text } from '@nextui-org/react';
 
-import "./components/globals.css";
+import "../components/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-import { userService } from './services';
-import { Nav, Alert } from './components';
-import { nextUILightTheme } from './components/nextui';
-import { Footer } from 'pages/components';
+import { userService } from '../services';
+import { Nav, Alert } from '../components';
+import { nextUILightTheme } from '../components/nextui';
+import { Footer } from 'components';
 
 import { Inter } from 'next/font/google'
 
@@ -71,7 +71,7 @@ export default function App({ Component, pageProps }) {
                     {authorized &&
                         <Component {...pageProps} />
                     }
-                    <Footer />
+                    {/* <Footer /> */}
                 </div>
             </NextUIProvider>
         </>

@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { alertService, userService } from './services';
+import { alertService, userService } from '../services';
 import {
   HomeMessageUserLoggedIn, HomeMessageUserNotLoggedIn, HomeMessageUserLoggedOut,
-  HomeInteractionUserLoggedIn, HomeInteractionUserNotLoggedIn, HomeInteractionUserLoggedOut } from './components/propsIt';
+  HomeInteractionUserLoggedIn, HomeInteractionUserNotLoggedIn, HomeInteractionUserLoggedOut } from '../components/propsIt';
 import { any } from 'prop-types';
 import styles from './style.module.css';
-import { HeaderLogo } from './components/logos';
+import { HeaderLogo } from '../components/logos';
 import { Text } from '@nextui-org/react';
 
 
